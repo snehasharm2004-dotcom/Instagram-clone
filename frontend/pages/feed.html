@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram - Feed</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/feed.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <img src="../assets/logo.jpeg" alt="Instagram" class="logo-img">
+                <span>Instagram</span>
+            </div>
+
+            <div class="navbar-search">
+                <input type="text" id="search-input" placeholder="Search users..." class="search-input">
+                <div id="search-results" class="search-results" style="display: none;"></div>
+            </div>
+
+            <div class="navbar-menu">
+                <button class="nav-icon" id="new-post-btn" title="New Post">
+                    <i class="fas fa-plus-square"></i>
+                </button>
+                <button class="nav-icon" id="home-btn" title="Home">
+                    <i class="fas fa-home"></i>
+                </button>
+                <div class="nav-dropdown">
+                    <button class="nav-icon" id="profile-btn" title="Profile">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    <div class="dropdown-menu" id="dropdown-menu">
+                        <a href="#" id="view-profile-btn">View Profile</a>
+                        <a href="#" id="settings-btn">Settings</a>
+                        <hr>
+                        <a href="#" id="logout-btn">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="feed-container">
+            <!-- Stories Section (Optional) -->
+            <div class="stories-section">
+                <div class="story">
+                    <img src="../assets/profile.png" alt="Your story" class="story-img">
+                    <p>Your Story</p>
+                </div>
+            </div>
+
+            <!-- Posts Feed -->
+            <div id="posts-feed" class="posts-feed">
+                <!-- Posts will be loaded here -->
+            </div>
+
+            <!-- Loading Indicator -->
+            <div id="loading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+            </div>
+
+            <!-- No Posts Message -->
+            <div id="no-posts" class="no-posts" style="display: none;">
+                <i class="fas fa-image"></i>
+                <p>No posts yet. Follow some users to see their posts!</p>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="suggested-section">
+                <div class="section-header">
+                    <h3>Suggested For You</h3>
+                    <a href="#">See All</a>
+                </div>
+                <div id="suggested-users" class="suggested-users">
+                    <!-- Suggested users will be loaded here -->
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- New Post Modal -->
+    <div id="new-post-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create Post</h2>
+                <button class="close-btn" onclick="closePostModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="post-form">
+                    <div class="image-upload">
+                        <input type="file" id="post-image" accept="image/*" required>
+                        <div id="image-preview" class="image-preview"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea id="post-caption" placeholder="Write a caption..." maxlength="2200"></textarea>
+                        <span id="caption-count" class="caption-count">0/2200</span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" id="post-location" placeholder="Add location (optional)">
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="closePostModal()">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Post</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Message -->
+    <div id="error-message" class="error-message" style="display: none;"></div>
+
+    <!-- Success Message -->
+    <div id="success-message" class="success-message" style="display: none;"></div>
+
+    <script src="../js/utils/storage.js"></script>
+    <script src="../js/utils/auth.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/utils/api.js"></script>
+    <script src="../js/components/navbar.js"></script>
+    <script src="../js/components/post-card.js"></script>
+    <script src="../js/pages/feed.js"></script>
+</body>
+</html>

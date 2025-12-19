@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram - Your Feed</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/feed.css">
+</head>
+<body>
+    <!-- Left Sidebar Navigation -->
+    <aside class="sidebar-nav">
+        <div class="sidebar-header">
+            <img src="assets/logo.jpeg" alt="Instagram" class="sidebar-logo">
+            <span class="sidebar-text">Instagram</span>
+        </div>
+
+        <nav class="sidebar-menu">
+            <button class="sidebar-item" id="home-btn" title="Home">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </button>
+
+            <button class="sidebar-item" id="search-btn" title="Search">
+                <i class="fas fa-search"></i>
+                <span>Search</span>
+            </button>
+
+            <button class="sidebar-item" id="new-post-btn" title="Create">
+                <i class="fas fa-plus-square"></i>
+                <span>Create</span>
+            </button>
+
+            <button class="sidebar-item" id="profile-btn" title="Profile">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </button>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="sidebar-item" id="menu-btn" title="More">
+                <i class="fas fa-bars"></i>
+                <span>More</span>
+            </button>
+            <div class="dropdown-menu" id="dropdown-menu">
+                <a href="#" id="view-profile-btn">View Profile</a>
+                <hr>
+                <a href="#" id="refresh-btn">Refresh Posts</a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Search Modal -->
+    <div id="search-modal" class="search-modal" style="display: none;">
+        <div class="search-modal-content">
+            <div class="search-modal-header">
+                <input type="text" id="search-input" placeholder="Search users..." class="search-input">
+                <button class="close-search-btn" onclick="closeSearchModal()">&times;</button>
+            </div>
+            <div id="search-results" class="search-results"></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="feed-container">
+            <!-- Stories Header with Search -->
+            <div class="stories-header">
+                <input type="text" placeholder="Search posts..." class="stories-search">
+            </div>
+
+            <!-- Stories Title -->
+            <div class="stories-title">
+                <h2>Stories</h2>
+            </div>
+
+            <!-- Stories Section -->
+            <div class="stories-section">
+                <div class="story your-story">
+                    <div class="story-plus">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <p>Your Story</p>
+                </div>
+                <div class="story">
+                    <img src="https://i.pravatar.cc/150?img=1" alt="Story" class="story-img">
+                    <p>john_doe</p>
+                </div>
+                <div class="story">
+                    <img src="https://i.pravatar.cc/150?img=2" alt="Story" class="story-img">
+                    <p>sarah_smith</p>
+                </div>
+                <div class="story">
+                    <img src="https://i.pravatar.cc/150?img=3" alt="Story" class="story-img">
+                    <p>alex_jones</p>
+                </div>
+                <div class="story">
+                    <img src="https://i.pravatar.cc/150?img=4" alt="Story" class="story-img">
+                    <p>emily_wilson</p>
+                </div>
+                <div class="story">
+                    <img src="https://i.pravatar.cc/150?img=5" alt="Story" class="story-img">
+                    <p>mike_brown</p>
+                </div>
+                <div class="story">
+                    <img src="https://i.pravatar.cc/150?img=6" alt="Story" class="story-img">
+                    <p>jessica_lee</p>
+                </div>
+                <div class="story">
+                    <img src="https://i.pravatar.cc/150?img=7" alt="Story" class="story-img">
+                    <p>david_kim</p>
+                </div>
+                <div class="story">
+                    <img src="https://i.pravatar.cc/150?img=8" alt="Story" class="story-img">
+                    <p>amanda_rose</p>
+                </div>
+                <div class="story">
+                    <img src="https://i.pravatar.cc/150?img=9" alt="Story" class="story-img">
+                    <p>chris_taylor</p>
+                </div>
+                <div class="story">
+                    <img src="https://i.pravatar.cc/150?img=10" alt="Story" class="story-img">
+                    <p>sophia_chen</p>
+                </div>
+                <div class="story">
+                    <img src="https://i.pravatar.cc/150?img=11" alt="Story" class="story-img">
+                    <p>james_wilson</p>
+                </div>
+                <div class="story">
+                    <img src="https://i.pravatar.cc/150?img=12" alt="Story" class="story-img">
+                    <p>rachel_green</p>
+                </div>
+            </div>
+
+            <!-- Feed Title -->
+            <div class="feed-title">
+                <h2>Feed</h2>
+            </div>
+
+            <!-- Posts Feed -->
+            <div id="posts-feed" class="posts-feed">
+                <!-- Posts will be loaded here -->
+            </div>
+
+            <!-- Loading Indicator -->
+            <div id="loading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+            </div>
+
+            <!-- No Posts Message -->
+            <div id="no-posts" class="no-posts" style="display: none;">
+                <i class="fas fa-image"></i>
+                <p>No posts available</p>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="suggested-section">
+                <div class="section-header">
+                    <h3>Suggested For You</h3>
+                    <a href="#">See All</a>
+                </div>
+                <div id="suggested-users" class="suggested-users">
+                    <!-- Suggested users will be loaded here -->
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Error Message -->
+    <div id="error-message" class="error-message" style="display: none;"></div>
+
+    <!-- Success Message -->
+    <div id="success-message" class="success-message" style="display: none;"></div>
+
+    <script src="js/mockData.js"></script>
+    <script src="js/components/navbar.js"></script>
+    <script src="js/components/post-card.js"></script>
+    <script src="js/pages/feed-demo.js"></script>
+</body>
+</html>
