@@ -47,10 +47,10 @@ function initDemoFeed() {
     });
   }
 
-  // Profile button - show profile
+  // Profile button - navigate to profile page
   if (profileBtn) {
     profileBtn.addEventListener('click', () => {
-      showUserProfile(currentUser);
+      window.location.href = 'pages/profile.html?username=' + currentUser.username;
     });
   }
 

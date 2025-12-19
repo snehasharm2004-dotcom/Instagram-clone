@@ -1,23 +1,29 @@
-// Check authentication
-if (!auth.isAuthenticated()) {
-  window.location.href = '../index.html';
-}
-
+// Get username from URL parameter
 const urlParams = new URLSearchParams(window.location.search);
 const usernameParam = urlParams.get('username');
-const currentUser = auth.getUser();
+
+// Use mock data for demo
 let profileData = null;
+let currentUser = null;
 let isOwnProfile = false;
 
 /**
  * Initialize profile page
  */
 function initProfile() {
+  const homeBtn = document.getElementById('home-btn');
   const editForm = document.getElementById('edit-profile-form');
   const bioInput = document.getElementById('edit-bio');
   const bioCount = document.getElementById('bio-count');
   const editProfileModal = document.getElementById('edit-profile-modal');
   const followersModal = document.getElementById('followers-modal');
+
+  // Home button - navigate back to feed
+  if (homeBtn) {
+    homeBtn.addEventListener('click', () => {
+      window.location.href = '../index.html';
+    });
+  }
 
   // Bio counter
   if (bioInput) {
@@ -66,13 +72,23 @@ function initProfile() {
 }
 
 /**
- * Load user profile
+ * Load user profile (using mock data)
  */
-async function loadProfile(username) {
+function loadProfile(username) {
   try {
-    const { API_ENDPOINTS } = require('../config');
-    const response = await api.get(API_ENDPOINTS.GET_USER(username));
-    profileData = response.user;
+    // Find user in mock data
+    profileData = mockUsers.find(u => u.username === username);
+
+    if (!profileData) {
+      showError('User not found');
+      return;
+    }
+
+    // Set current user (for comparison)
+    if (!currentUser) {
+      currentUser = mockUsers[0]; // Set to first user for demo
+    }
+
     isOwnProfile = profileData._id === currentUser._id;
 
     // Populate profile info
@@ -80,7 +96,10 @@ async function loadProfile(username) {
     document.getElementById('profile-username').textContent = profileData.username;
     document.getElementById('profile-fullname').textContent = profileData.fullName;
     document.getElementById('profile-bio').textContent = profileData.bio || 'No bio';
-    document.getElementById('posts-count').textContent = response.postsCount || 0;
+
+    // Count posts for this user
+    const userPosts = mockPosts.filter(p => p.author._id === profileData._id);
+    document.getElementById('posts-count').textContent = userPosts.length;
     document.getElementById('followers-count').textContent = profileData.followers.length;
     document.getElementById('following-count').textContent = profileData.following.length;
 
@@ -88,7 +107,7 @@ async function loadProfile(username) {
     updateActionButtons();
 
     // Load posts
-    loadUserPosts(profileData._id);
+    loadUserPosts(profileData._id, userPosts);
   } catch (error) {
     showError(error.message || 'Failed to load profile');
   }
@@ -124,22 +143,19 @@ function updateActionButtons() {
 }
 
 /**
- * Load user posts
+ * Load user posts (using mock data)
  */
-async function loadUserPosts(userId) {
+function loadUserPosts(userId, userPosts) {
   try {
-    const { API_ENDPOINTS } = require('../config');
-    const response = await api.get(API_ENDPOINTS.GET_USER_POSTS(userId) + '?limit=50');
-
     const postsGrid = document.getElementById('posts-grid');
     const noPostsMessage = document.getElementById('no-posts-message');
 
-    if (response.posts.length === 0) {
+    if (!userPosts || userPosts.length === 0) {
       postsGrid.innerHTML = '';
       noPostsMessage.style.display = 'block';
     } else {
       noPostsMessage.style.display = 'none';
-      postsGrid.innerHTML = response.posts
+      postsGrid.innerHTML = userPosts
         .map(post => `
           <div class="post-grid-item">
             <img src="${post.imageUrl}" alt="Post">
@@ -181,9 +197,9 @@ function closeEditModal() {
 }
 
 /**
- * Update profile
+ * Update profile (demo - shows success message)
  */
-async function updateProfile(e) {
+function updateProfile(e) {
   e.preventDefault();
 
   const fullName = document.getElementById('edit-fullname').value.trim();
@@ -195,41 +211,32 @@ async function updateProfile(e) {
     return;
   }
 
-  try {
-    const { API_ENDPOINTS } = require('../config');
-    const response = await api.put(API_ENDPOINTS.UPDATE_PROFILE, {
-      fullName,
-      bio,
-      email
-    });
+  // Update mock data
+  profileData.fullName = fullName;
+  profileData.bio = bio;
 
-    // Update local user data
-    profileData = response.user;
-    auth.saveUser(response.user);
+  // Update UI
+  document.getElementById('profile-fullname').textContent = fullName;
+  document.getElementById('profile-bio').textContent = bio || 'No bio';
 
-    // Reload profile
-    loadProfile(profileData.username);
-    closeEditModal();
-    showSuccess('Profile updated successfully!');
-  } catch (error) {
-    showError(error.message || 'Failed to update profile');
-  }
+  closeEditModal();
+  showSuccess('Profile updated successfully!');
 }
 
 /**
- * Follow user
+ * Follow user (demo - shows success message)
  */
-async function followUser(userId) {
+function followUser(userId) {
   try {
-    const { API_ENDPOINTS } = require('../config');
-    await api.post(API_ENDPOINTS.FOLLOW_USER(userId));
+    // Update mock data
+    if (!currentUser.following.includes(userId)) {
+      currentUser.following.push(userId);
+      profileData.followers.push(currentUser._id);
+    }
 
-    // Update local user data
-    currentUser.following.push(userId);
-    auth.saveUser(currentUser);
-
-    // Reload profile
-    loadProfile(profileData.username);
+    // Update UI
+    updateActionButtons();
+    document.getElementById('followers-count').textContent = profileData.followers.length;
     showSuccess('User followed!');
   } catch (error) {
     showError(error.message);
@@ -237,19 +244,17 @@ async function followUser(userId) {
 }
 
 /**
- * Unfollow user
+ * Unfollow user (demo - shows success message)
  */
-async function unfollowUser(userId) {
+function unfollowUser(userId) {
   try {
-    const { API_ENDPOINTS } = require('../config');
-    await api.delete(API_ENDPOINTS.UNFOLLOW_USER(userId));
-
-    // Update local user data
+    // Update mock data
     currentUser.following = currentUser.following.filter(id => id !== userId);
-    auth.saveUser(currentUser);
+    profileData.followers = profileData.followers.filter(id => id !== currentUser._id);
 
-    // Reload profile
-    loadProfile(profileData.username);
+    // Update UI
+    updateActionButtons();
+    document.getElementById('followers-count').textContent = profileData.followers.length;
     showSuccess('User unfollowed!');
   } catch (error) {
     showError(error.message);
@@ -257,35 +262,36 @@ async function unfollowUser(userId) {
 }
 
 /**
- * Show followers list
+ * Show followers list (demo)
  */
-async function showFollowers(userId) {
+function showFollowers(userId) {
   try {
-    const { API_ENDPOINTS } = require('../config');
-    const response = await api.get(API_ENDPOINTS.GET_FOLLOWERS(userId));
-
     const modal = document.getElementById('followers-modal');
     document.getElementById('followers-modal-title').textContent = 'Followers';
     const followersList = document.getElementById('followers-list');
 
-    if (response.followers.length === 0) {
+    if (profileData.followers.length === 0) {
       followersList.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">No followers yet</p>';
     } else {
-      followersList.innerHTML = response.followers
-        .map(follower => `
-          <div class="follower-item">
-            <div class="follower-info" onclick="goToProfile('${follower.username}')">
-              <img src="${follower.profilePicture}" alt="${follower.username}" class="follower-avatar">
-              <div class="follower-details">
-                <div class="follower-username">${follower.username}</div>
-                <div class="follower-fullname">${follower.fullName}</div>
+      followersList.innerHTML = profileData.followers
+        .map(followerId => {
+          const follower = mockUsers.find(u => u._id === followerId);
+          if (!follower) return '';
+          return `
+            <div class="follower-item">
+              <div class="follower-info" onclick="goToProfile('${follower.username}')">
+                <img src="${follower.profilePicture}" alt="${follower.username}" class="follower-avatar">
+                <div class="follower-details">
+                  <div class="follower-username">${follower.username}</div>
+                  <div class="follower-fullname">${follower.fullName}</div>
+                </div>
               </div>
+              <button class="follower-action" onclick="toggleFollowFromModal('${follower._id}')">
+                ${currentUser.following.includes(follower._id) ? 'Following' : 'Follow'}
+              </button>
             </div>
-            <button class="follower-action" onclick="toggleFollowFromModal('${follower._id}')">
-              ${currentUser.following.includes(follower._id) ? 'Following' : 'Follow'}
-            </button>
-          </div>
-        `)
+          `;
+        })
         .join('');
     }
 
@@ -296,35 +302,36 @@ async function showFollowers(userId) {
 }
 
 /**
- * Show following list
+ * Show following list (demo)
  */
-async function showFollowing(userId) {
+function showFollowing(userId) {
   try {
-    const { API_ENDPOINTS } = require('../config');
-    const response = await api.get(API_ENDPOINTS.GET_FOLLOWING(userId));
-
     const modal = document.getElementById('followers-modal');
     document.getElementById('followers-modal-title').textContent = 'Following';
     const followersList = document.getElementById('followers-list');
 
-    if (response.following.length === 0) {
+    if (profileData.following.length === 0) {
       followersList.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">Not following anyone</p>';
     } else {
-      followersList.innerHTML = response.following
-        .map(user => `
-          <div class="follower-item">
-            <div class="follower-info" onclick="goToProfile('${user.username}')">
-              <img src="${user.profilePicture}" alt="${user.username}" class="follower-avatar">
-              <div class="follower-details">
-                <div class="follower-username">${user.username}</div>
-                <div class="follower-fullname">${user.fullName}</div>
+      followersList.innerHTML = profileData.following
+        .map(userId => {
+          const user = mockUsers.find(u => u._id === userId);
+          if (!user) return '';
+          return `
+            <div class="follower-item">
+              <div class="follower-info" onclick="goToProfile('${user.username}')">
+                <img src="${user.profilePicture}" alt="${user.username}" class="follower-avatar">
+                <div class="follower-details">
+                  <div class="follower-username">${user.username}</div>
+                  <div class="follower-fullname">${user.fullName}</div>
+                </div>
               </div>
+              <button class="follower-action" onclick="toggleFollowFromModal('${user._id}')">
+                ${currentUser.following.includes(user._id) ? 'Following' : 'Follow'}
+              </button>
             </div>
-            <button class="follower-action" onclick="toggleFollowFromModal('${user._id}')">
-              ${currentUser.following.includes(user._id) ? 'Following' : 'Follow'}
-            </button>
-          </div>
-        `)
+          `;
+        })
         .join('');
     }
 
@@ -335,32 +342,30 @@ async function showFollowing(userId) {
 }
 
 /**
- * Toggle follow from modal
+ * Toggle follow from modal (demo)
  */
-async function toggleFollowFromModal(userId) {
+function toggleFollowFromModal(userId) {
   const isFollowing = currentUser.following.includes(userId);
 
-  try {
-    const { API_ENDPOINTS } = require('../config');
-
-    if (isFollowing) {
-      await api.delete(API_ENDPOINTS.UNFOLLOW_USER(userId));
-      currentUser.following = currentUser.following.filter(id => id !== userId);
-    } else {
-      await api.post(API_ENDPOINTS.FOLLOW_USER(userId));
-      currentUser.following.push(userId);
-    }
-
-    auth.saveUser(currentUser);
-    // Reload followers/following list
-    if (document.getElementById('followers-modal-title').textContent === 'Followers') {
-      showFollowers(profileData._id);
-    } else {
-      showFollowing(profileData._id);
-    }
-  } catch (error) {
-    showError(error.message);
+  if (isFollowing) {
+    currentUser.following = currentUser.following.filter(id => id !== userId);
+  } else {
+    currentUser.following.push(userId);
   }
+
+  // Reload followers/following list
+  if (document.getElementById('followers-modal-title').textContent === 'Followers') {
+    showFollowers(profileData._id);
+  } else {
+    showFollowing(profileData._id);
+  }
+}
+
+/**
+ * Go to user profile
+ */
+function goToProfile(username) {
+  window.location.href = 'profile.html?username=' + username;
 }
 
 /**
