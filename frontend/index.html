@@ -9,6 +9,44 @@
     <link rel="stylesheet" href="css/feed.css">
 </head>
 <body>
+    <!-- Sticky Top Navbar -->
+    <nav class="navbar-sticky">
+        <div class="navbar-sticky-container">
+            <!-- Left: Logo -->
+            <div class="navbar-sticky-logo">
+                <img src="assets/logo.jpeg" alt="Instagram" class="logo-img">
+                <span>Instagram</span>
+            </div>
+
+            <!-- Center: Search Bar -->
+            <div class="navbar-sticky-search">
+                <input type="text" id="navbar-search-input" placeholder="Search users..." class="navbar-search-input">
+                <div id="navbar-search-results" class="navbar-search-results"></div>
+            </div>
+
+            <!-- Right: Icons -->
+            <div class="navbar-sticky-icons">
+                <button class="navbar-icon" id="navbar-home-btn" title="Home">
+                    <i class="fas fa-home"></i>
+                </button>
+                <button class="navbar-icon" id="navbar-message-btn" title="Messages">
+                    <i class="fas fa-comment"></i>
+                </button>
+                <div class="navbar-icon-dropdown">
+                    <button class="navbar-icon" id="navbar-profile-btn" title="Profile">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    <div class="navbar-dropdown-menu" id="navbar-dropdown-menu">
+                        <a href="#" id="navbar-view-profile-btn">View Profile</a>
+                        <a href="#" id="navbar-settings-btn">Settings</a>
+                        <hr>
+                        <a href="#" id="navbar-logout-btn">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
     <!-- Left Sidebar Navigation -->
     <aside class="sidebar-nav">
         <div class="sidebar-header">
@@ -123,6 +161,7 @@
                     <img src="https://i.pravatar.cc/150?img=10" alt="Story" class="story-img">
                     <p>sophia_chen</p>
                 </div>
+                
                 <div class="story">
                     <img src="https://i.pravatar.cc/150?img=11" alt="Story" class="story-img">
                     <p>james_wilson</p>
