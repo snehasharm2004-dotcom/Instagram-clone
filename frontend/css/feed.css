@@ -363,8 +363,8 @@
 
 /* Posts Feed */
 .posts-feed {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
@@ -788,6 +788,10 @@
   .sidebar-text {
     display: none;
   }
+
+  .posts-feed {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
@@ -833,6 +837,10 @@
 
   .posts-grid {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  .posts-feed {
+    grid-template-columns: 1fr;
   }
 }
 
