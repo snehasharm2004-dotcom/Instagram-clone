@@ -253,7 +253,6 @@ function likePostDouble(postId) {
   const tapLength = currentTime - lastTap;
 
   if (tapLength < 300 && tapLength > 0) {
-    const post = allPosts.find(p => p._id === postId);
     const postEl = document.querySelector(`[data-post-id="${postId}"]`);
     const likeBtn = postEl.querySelector('.like-btn');
 
@@ -348,7 +347,7 @@ function loadSuggestedUsers() {
  * Show user profile
  */
 function showUserProfile(user) {
-  alert(`👤 ${user.fullName} (@${user.username})\n\n📝 Bio: ${user.bio || 'No bio'}\n\n👥 ${user.followers.length} followers • ${user.following.length} following\n\n📸 ${user.posts?.length || 0} posts\n\nProfile view works with backend integration!`);
+  window.location.href = 'pages/profile.html?username=' + user.username;
 }
 
 /**

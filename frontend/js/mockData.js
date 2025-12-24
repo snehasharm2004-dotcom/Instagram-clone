@@ -211,6 +211,138 @@ const mockPosts = [
     location: "Gold's Gym",
     tags: ["fitness", "workout", "health"],
     createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000) // 3 days ago
+  },
+  {
+    _id: "p9",
+    author: mockUsers[1],
+    imageUrl: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=500&fit=crop",
+    caption: "Ancient temples and breathtaking views 🏛️ #travel #history #wanderlust #architecture",
+    likes: ["0", "2", "3", "4"],
+    likesCount: 4,
+    comments: [
+      {
+        _id: "c9",
+        author: mockUsers[0],
+        text: "Absolutely stunning! When are you going back?",
+        likes: []
+      },
+      {
+        _id: "c10",
+        author: mockUsers[3],
+        text: "This is on my bucket list!",
+        likes: []
+      }
+    ],
+    commentsCount: 2,
+    location: "Bangkok, Thailand",
+    tags: ["travel", "history", "architecture"],
+    createdAt: new Date(Date.now() - 4 * 60 * 60 * 1000) // 4 hours ago
+  },
+  {
+    _id: "p10",
+    author: mockUsers[2],
+    imageUrl: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=500&fit=crop",
+    caption: "Finished my first app design project! So proud of the results 🎨 #design #webdesign #portfolio",
+    likes: ["0", "1"],
+    likesCount: 2,
+    comments: [
+      {
+        _id: "c11",
+        author: mockUsers[0],
+        text: "Beautiful work! Can't wait to see it live",
+        likes: []
+      }
+    ],
+    commentsCount: 1,
+    location: "Home Office",
+    tags: ["design", "webdesign", "portfolio"],
+    createdAt: new Date(Date.now() - 6 * 60 * 60 * 1000) // 6 hours ago
+  },
+  {
+    _id: "p11",
+    author: mockUsers[0],
+    imageUrl: "https://images.unsplash.com/photo-1470093851219-69951fcbb533?w=500&h=500&fit=crop",
+    caption: "Golden hour photography 📷 The best time to shoot is always golden hour! #photography #goldenour #nature",
+    likes: ["1", "2", "4"],
+    likesCount: 3,
+    comments: [
+      {
+        _id: "c12",
+        author: mockUsers[1],
+        text: "The lighting is perfect!",
+        likes: []
+      }
+    ],
+    commentsCount: 1,
+    location: "Mountain Peak",
+    tags: ["photography", "goldenour", "nature"],
+    createdAt: new Date(Date.now() - 9 * 60 * 60 * 1000) // 9 hours ago
+  },
+  {
+    _id: "p12",
+    author: mockUsers[3],
+    imageUrl: "https://images.unsplash.com/photo-1495545632066-ae2e2289eac9?w=500&h=500&fit=crop",
+    caption: "New recipe alert! Homemade pizza night 🍕 Crispy crust, fresh toppings, pure bliss #foodie #homecooking #pizza",
+    likes: ["0", "2", "4"],
+    likesCount: 3,
+    comments: [
+      {
+        _id: "c13",
+        author: mockUsers[4],
+        text: "Recipe please! 😍",
+        likes: []
+      }
+    ],
+    commentsCount: 1,
+    location: "My Kitchen",
+    tags: ["foodie", "homecooking", "pizza"],
+    createdAt: new Date(Date.now() - 12 * 60 * 60 * 1000) // 12 hours ago
+  },
+  {
+    _id: "p13",
+    author: mockUsers[4],
+    imageUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&h=500&fit=crop",
+    caption: "Beach run at sunrise 🏃 Best way to start the day! #fitness #running #health #beachbody",
+    likes: ["0", "1", "3"],
+    likesCount: 3,
+    comments: [
+      {
+        _id: "c14",
+        author: mockUsers[0],
+        text: "Amazing dedication! Keep it up 💪",
+        likes: []
+      }
+    ],
+    commentsCount: 1,
+    location: "Sunny Beach",
+    tags: ["fitness", "running", "health"],
+    createdAt: new Date(Date.now() - 15 * 60 * 60 * 1000) // 15 hours ago
+  },
+  {
+    _id: "p14",
+    author: mockUsers[2],
+    imageUrl: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=500&fit=crop",
+    caption: "Working on a new brand identity project 🎯 Colors, typography, and visual elements coming together! #design #branding #creative",
+    likes: ["0", "4"],
+    likesCount: 2,
+    comments: [
+      {
+        _id: "c15",
+        author: mockUsers[1],
+        text: "Can't wait to see the full project!",
+        likes: []
+      },
+      {
+        _id: "c16",
+        author: mockUsers[3],
+        text: "Your work is always so professional",
+        likes: []
+      }
+    ],
+    commentsCount: 2,
+    location: "Design Studio",
+    tags: ["design", "branding", "creative"],
+    createdAt: new Date(Date.now() - 18 * 60 * 60 * 1000) // 18 hours ago
   }
 ];
 
