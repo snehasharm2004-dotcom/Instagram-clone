@@ -10,27 +10,38 @@
     <link rel="stylesheet" href="../css/profile.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="navbar-container">
-            <div class="navbar-logo">
+    <!-- Sticky Navigation Bar -->
+    <nav class="navbar-sticky">
+        <div class="navbar-sticky-container">
+            <!-- Left: Logo -->
+            <div class="navbar-sticky-logo">
                 <img src="../assets/logo.jpeg" alt="Instagram" class="logo-img">
                 <span>Instagram</span>
             </div>
 
-            <div class="navbar-menu">
-                <button class="nav-icon" id="home-btn" title="Home">
+            <!-- Center: Search Bar -->
+            <div class="navbar-sticky-search">
+                <input type="text" id="navbar-search-input" placeholder="Search users..." class="navbar-search-input">
+                <div id="navbar-search-results" class="navbar-search-results"></div>
+            </div>
+
+            <!-- Right: Icons -->
+            <div class="navbar-sticky-icons">
+                <button class="navbar-icon" id="navbar-home-btn" title="Home">
                     <i class="fas fa-home"></i>
                 </button>
-                <div class="nav-dropdown">
-                    <button class="nav-icon" id="profile-btn" title="Profile">
+                <button class="navbar-icon" id="navbar-message-btn" title="Messages">
+                    <i class="fas fa-comment"></i>
+                </button>
+                <div class="navbar-icon-dropdown">
+                    <button class="navbar-icon" id="navbar-profile-btn" title="Profile">
                         <i class="fas fa-user"></i>
                     </button>
-                    <div class="dropdown-menu" id="dropdown-menu">
-                        <a href="#" id="view-profile-btn">View Profile</a>
-                        <a href="#" id="settings-btn">Settings</a>
+                    <div class="navbar-dropdown-menu" id="navbar-dropdown-menu">
+                        <a href="#" id="navbar-view-profile-btn">View Profile</a>
+                        <a href="#" id="navbar-settings-btn">Settings</a>
                         <hr>
-                        <a href="#" id="logout-btn">Logout</a>
+                        <a href="#" id="navbar-logout-btn">Logout</a>
                     </div>
                 </div>
             </div>

@@ -11,6 +11,9 @@ let isOwnProfile = false;
  * Initialize profile page
  */
 function initProfile() {
+  // Sticky Navbar initialization
+  initStickyNavbar();
+
   const homeBtn = document.getElementById('home-btn');
   const editForm = document.getElementById('edit-profile-form');
   const bioInput = document.getElementById('edit-bio');
@@ -398,6 +401,134 @@ function showSuccess(message) {
   setTimeout(() => {
     successDiv.style.display = 'none';
   }, 5000);
+}
+
+/**
+ * Initialize sticky navbar
+ */
+function initStickyNavbar() {
+  const navbarLogo = document.querySelector('.navbar-sticky-logo');
+  const navbarHomeBtn = document.getElementById('navbar-home-btn');
+  const navbarMessageBtn = document.getElementById('navbar-message-btn');
+  const navbarProfileBtn = document.getElementById('navbar-profile-btn');
+  const navbarDropdownMenu = document.getElementById('navbar-dropdown-menu');
+  const searchInput = document.getElementById('navbar-search-input');
+  const searchResults = document.getElementById('navbar-search-results');
+
+  // Logo click - go to home
+  if (navbarLogo) {
+    navbarLogo.addEventListener('click', () => {
+      window.location.href = '../index.html';
+    });
+  }
+
+  // Home button - navigate to feed
+  if (navbarHomeBtn) {
+    navbarHomeBtn.addEventListener('click', () => {
+      window.location.href = '../index.html';
+    });
+  }
+
+  // Message button - show alert
+  if (navbarMessageBtn) {
+    navbarMessageBtn.addEventListener('click', () => {
+      alert('💬 Messages feature works with backend integration!\n\nThis is a demo version.');
+    });
+  }
+
+  // Profile dropdown
+  if (navbarProfileBtn) {
+    navbarProfileBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navbarDropdownMenu.classList.toggle('active');
+    });
+  }
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.navbar-icon-dropdown')) {
+      navbarDropdownMenu.classList.remove('active');
+    }
+  });
+
+  // Profile menu links
+  const viewProfileLink = document.getElementById('navbar-view-profile-btn');
+  const settingsLink = document.getElementById('navbar-settings-btn');
+  const logoutLink = document.getElementById('navbar-logout-btn');
+
+  if (viewProfileLink) {
+    viewProfileLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (currentUser) {
+        window.location.href = 'profile.html?username=' + currentUser.username;
+      }
+    });
+  }
+
+  if (settingsLink) {
+    settingsLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('⚙️ Settings feature coming soon!');
+    });
+  }
+
+  if (logoutLink) {
+    logoutLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('👋 Logged out! Redirecting to home...');
+      window.location.href = '../index.html';
+    });
+  }
+
+  // Search functionality
+  if (searchInput) {
+    let searchTimeout;
+    searchInput.addEventListener('input', (e) => {
+      clearTimeout(searchTimeout);
+      const query = e.target.value.trim().toLowerCase();
+
+      if (query.length < 1) {
+        searchResults.classList.remove('active');
+        return;
+      }
+
+      searchTimeout = setTimeout(() => {
+        const results = mockUsers.filter(user =>
+          user.username.toLowerCase().includes(query) ||
+          user.fullName.toLowerCase().includes(query)
+        );
+
+        if (results.length === 0) {
+          searchResults.innerHTML = '<div style="padding: 16px; text-align: center; color: var(--text-secondary);">No users found</div>';
+        } else {
+          searchResults.innerHTML = results
+            .map(user => `
+              <div style="padding: 12px 16px; border-bottom: 1px solid var(--border-color); cursor: pointer; transition: background-color 0.2s;"
+                   onclick="goToProfile('${user.username}')"
+                   onmouseover="this.style.backgroundColor = 'var(--background)'"
+                   onmouseout="this.style.backgroundColor = 'transparent'">
+                <div style="display: flex; gap: 12px; align-items: center;">
+                  <img src="${user.profilePicture}" alt="${user.username}" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
+                  <div>
+                    <div style="font-weight: 600; font-size: 13px;">${user.username}</div>
+                    <div style="font-size: 12px; color: var(--text-secondary);">${user.fullName}</div>
+                  </div>
+                </div>
+              </div>
+            `)
+            .join('');
+        }
+
+        searchResults.classList.add('active');
+      }, 300);
+    });
+
+    document.addEventListener('click', (e) => {
+      if (e.target !== searchInput && !e.target.closest('.navbar-sticky-search')) {
+        searchResults.classList.remove('active');
+      }
+    });
+  }
 }
 
 // Initialize on page load
