@@ -233,14 +233,14 @@
 .feed-container {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
 }
 
 /* Stories Header with Search */
 .stories-header {
   background: transparent;
-  padding: 0 0 4px 0;
-  margin-bottom: 4px;
+  padding: 0 0 2px 0;
+  margin-bottom: 2px;
 }
 
 .stories-search {
@@ -266,7 +266,7 @@
 
 /* Stories Title */
 .stories-title {
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .stories-title h2 {
@@ -286,7 +286,7 @@
   display: flex;
   gap: 10px;
   overflow-x: auto;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   box-shadow: var(--shadow);
 }
 
@@ -349,8 +349,8 @@
 
 /* Feed Title */
 .feed-title {
-  margin-bottom: 12px;
-  margin-top: 4px;
+  margin-bottom: 6px;
+  margin-top: 0px;
 }
 
 .feed-title h2 {
