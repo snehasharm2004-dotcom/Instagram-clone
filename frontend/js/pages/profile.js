@@ -14,6 +14,9 @@ function initProfile() {
   // Sticky Navbar initialization
   initStickyNavbar();
 
+  // Footer navbar initialization
+  initProfileFooterNavbar();
+
   const homeBtn = document.getElementById('home-btn');
   const editForm = document.getElementById('edit-profile-form');
   const bioInput = document.getElementById('edit-bio');
@@ -527,6 +530,30 @@ function initStickyNavbar() {
       if (e.target !== searchInput && !e.target.closest('.navbar-sticky-search')) {
         searchResults.classList.remove('active');
       }
+    });
+  }
+}
+
+/**
+ * Initialize footer navbar for profile page
+ */
+function initProfileFooterNavbar() {
+  const footerSearchBtn = document.getElementById('footer-search-btn');
+  const footerCreateBtn = document.getElementById('footer-create-btn');
+
+  // Search button - show alert
+  if (footerSearchBtn) {
+    footerSearchBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('🔍 Search feature coming soon!');
+    });
+  }
+
+  // Create button - show alert
+  if (footerCreateBtn) {
+    footerCreateBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('📸 Post creation feature works with backend integration!\n\nThis is a demo version with mock data.');
     });
   }
 }

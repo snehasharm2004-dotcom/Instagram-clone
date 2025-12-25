@@ -9,6 +9,9 @@ function initDemoFeed() {
   // Initialize sticky navbar
   initStickyFeedNavbar();
 
+  // Initialize footer navbar
+  initFooterNavbar();
+
   const homeBtn = document.getElementById('home-btn');
   const searchBtn = document.getElementById('search-btn');
   const profileBtn = document.getElementById('profile-btn');
@@ -559,6 +562,43 @@ function initStickyFeedNavbar() {
       if (e.target !== searchInput && !e.target.closest('.navbar-sticky-search')) {
         searchResults.classList.remove('active');
       }
+    });
+  }
+}
+
+/**
+ * Initialize footer navbar
+ */
+function initFooterNavbar() {
+  const footerSearchBtn = document.getElementById('footer-search-btn');
+  const footerCreateBtn = document.getElementById('footer-create-btn');
+  const footerProfileBtn = document.getElementById('footer-profile-btn');
+
+  // Search button - open search modal
+  if (footerSearchBtn) {
+    footerSearchBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const searchModal = document.getElementById('search-modal');
+      if (searchModal) {
+        searchModal.style.display = 'flex';
+        document.getElementById('search-input').focus();
+      }
+    });
+  }
+
+  // Create button - show alert
+  if (footerCreateBtn) {
+    footerCreateBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('📸 Post creation feature works with backend integration!\n\nThis is a demo version with mock data.');
+    });
+  }
+
+  // Profile button - navigate to profile
+  if (footerProfileBtn) {
+    footerProfileBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.location.href = 'pages/profile.html?username=' + currentUser.username;
     });
   }
 }
