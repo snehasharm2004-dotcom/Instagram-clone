@@ -140,6 +140,9 @@ function loadDemoPosts() {
   const feedDiv = document.getElementById('posts-feed');
   const noPostsDiv = document.getElementById('no-posts');
 
+  console.log('Loading posts. Total posts:', allPosts.length);
+  console.log('First post:', allPosts[0]);
+
   if (allPosts.length === 0) {
     noPostsDiv.style.display = 'block';
     feedDiv.innerHTML = '';
@@ -149,6 +152,7 @@ function loadDemoPosts() {
       .map(post => createDemoPostCard(post))
       .join('');
     feedDiv.innerHTML = postsHTML;
+    console.log('Posts loaded into DOM');
   }
 }
 

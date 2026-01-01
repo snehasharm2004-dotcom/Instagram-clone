@@ -602,8 +602,12 @@
 .post-image {
   width: 100%;
   height: auto;
+  min-height: 300px;
+  max-height: 600px;
   display: block;
   background-color: var(--background);
+  object-fit: cover;
+  cursor: pointer;
 }
 
 .post-actions {
