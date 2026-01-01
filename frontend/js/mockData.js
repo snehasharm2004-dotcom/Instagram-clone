@@ -68,7 +68,7 @@ const mockPosts = [
     _id: "p1",
     author: mockUsers[0],
     imageUrl: "https://loremflickr.com/500/500?lock=1&search=sunset,mountains",
-    caption: "Beautiful sunset at the mountains! 🌅 #photography #nature #sunset",
+    caption: "Golden hour magic in the mountains ✨ #photography #sunset #mountains",
     likes: ["2", "3"],
     likesCount: 2,
     comments: [
@@ -94,7 +94,7 @@ const mockPosts = [
     _id: "p2",
     author: mockUsers[0],
     imageUrl: "https://loremflickr.com/500/500?lock=2&search=coffee,morning",
-    caption: "Morning coffee with a view ☕️ #lifestyle #mornings",
+    caption: "Nothing beats a hot coffee on a beautiful morning ☕ #lifestyle #morning #coffee",
     likes: ["1", "4"],
     likesCount: 2,
     comments: [
@@ -114,7 +114,7 @@ const mockPosts = [
     _id: "p3",
     author: mockUsers[1],
     imageUrl: "https://loremflickr.com/500/500?lock=3&search=paris,street,travel",
-    caption: "Exploring the streets of Paris 🗼 #travel #wanderlust #paris",
+    caption: "Lost in the charming streets of Paris 🗼 #travel #paris #wanderlust #europe",
     likes: ["0", "2", "3", "4"],
     likesCount: 4,
     comments: [
@@ -134,7 +134,7 @@ const mockPosts = [
     _id: "p4",
     author: mockUsers[1],
     imageUrl: "https://loremflickr.com/500/500?lock=4&search=beach,sunset",
-    caption: "Beach vibes 🌊 Nothing beats a sunset on the shore #beach #vacation",
+    caption: "Pure paradise 🌊 Sunset on the beach is all I need #beach #sunset #vacation #paradise",
     likes: ["0", "3"],
     likesCount: 2,
     comments: [],
@@ -147,7 +147,7 @@ const mockPosts = [
     _id: "p5",
     author: mockUsers[2],
     imageUrl: "https://loremflickr.com/500/500?lock=5&search=design,ui",
-    caption: "New UI design system I'm working on 🎨 #design #ux #ui",
+    caption: "Designing beautiful interfaces one pixel at a time 🎨 #design #ui #ux #webdesign",
     likes: ["0", "1"],
     likesCount: 2,
     comments: [
@@ -173,7 +173,7 @@ const mockPosts = [
     _id: "p6",
     author: mockUsers[3],
     imageUrl: "https://loremflickr.com/500/500?lock=6&search=pasta,food,cooking",
-    caption: "This pasta was absolutely delicious! 🍝 Recipe coming soon #foodie #cooking #pasta",
+    caption: "Homemade pasta perfection 🍝 Nothing tastes better than homemade! #foodie #cooking #pasta #delicious",
     likes: ["0", "1", "2"],
     likesCount: 3,
     comments: [
@@ -193,7 +193,7 @@ const mockPosts = [
     _id: "p7",
     author: mockUsers[3],
     imageUrl: "https://loremflickr.com/500/500?lock=7&search=breakfast,food",
-    caption: "Breakfast vibes ☀️ Start your day right! #breakfast #healthy #morning",
+    caption: "Breakfast goals 🍳 Energy for the day ahead! #breakfast #healthy #food #morningmotivation",
     likes: ["2", "4"],
     likesCount: 2,
     comments: [],
@@ -206,7 +206,7 @@ const mockPosts = [
     _id: "p8",
     author: mockUsers[4],
     imageUrl: "https://loremflickr.com/500/500?lock=8&search=gym,fitness,workout",
-    caption: "Morning gym session! 💪 Never miss leg day #fitness #workout #health",
+    caption: "Grinding hard at the gym 💪 No pain, no gain! #fitness #workout #fitnessmotivation #gains",
     likes: ["0", "1", "3"],
     likesCount: 3,
     comments: [
@@ -226,7 +226,7 @@ const mockPosts = [
     _id: "p9",
     author: mockUsers[1],
     imageUrl: "https://loremflickr.com/500/500?lock=9&search=temple,travel,architecture",
-    caption: "Ancient temples and breathtaking views 🏛️ #travel #history #wanderlust #architecture",
+    caption: "Exploring ancient architecture and cultural wonders 🏛️ #travel #architecture #culture #adventure",
     likes: ["0", "2", "3", "4"],
     likesCount: 4,
     comments: [
@@ -252,7 +252,7 @@ const mockPosts = [
     _id: "p10",
     author: mockUsers[2],
     imageUrl: "https://loremflickr.com/500/500?lock=10&search=design,webdesign,portfolio",
-    caption: "Finished my first app design project! So proud of the results 🎨 #design #webdesign #portfolio",
+    caption: "Just finished an amazing design project! So proud of this work 🎨 #design #portfolio #creative #webdesign",
     likes: ["0", "1"],
     likesCount: 2,
     comments: [
@@ -272,7 +272,7 @@ const mockPosts = [
     _id: "p11",
     author: mockUsers[0],
     imageUrl: "https://loremflickr.com/500/500?lock=11&search=photography,nature,golden",
-    caption: "Golden hour photography 📷 The best time to shoot is always golden hour! #photography #goldenour #nature",
+    caption: "Golden hour is photographer's best friend 📷 The perfect light for stunning shots! #photography #nature #golden",
     likes: ["1", "2", "4"],
     likesCount: 3,
     comments: [
@@ -292,7 +292,7 @@ const mockPosts = [
     _id: "p12",
     author: mockUsers[3],
     imageUrl: "https://loremflickr.com/500/500?lock=12&search=pizza,food,cooking",
-    caption: "New recipe alert! Homemade pizza night 🍕 Crispy crust, fresh toppings, pure bliss #foodie #homecooking #pizza",
+    caption: "Pizza night at home 🍕 Homemade is always better! Fresh, delicious, and made with love #foodie #pizza #cooking",
     likes: ["0", "2", "4"],
     likesCount: 3,
     comments: [
@@ -312,7 +312,7 @@ const mockPosts = [
     _id: "p13",
     author: mockUsers[4],
     imageUrl: "https://loremflickr.com/500/500?lock=13&search=beach,running,fitness",
-    caption: "Beach run at sunrise 🏃 Best way to start the day! #fitness #running #health #beachbody",
+    caption: "Morning beach run to energize the soul 🏃 Nothing beats running on sand! #fitness #running #beach #health",
     likes: ["0", "1", "3"],
     likesCount: 3,
     comments: [
@@ -332,7 +332,7 @@ const mockPosts = [
     _id: "p14",
     author: mockUsers[2],
     imageUrl: "https://loremflickr.com/500/500?lock=14&search=design,branding,creative",
-    caption: "Working on a new brand identity project 🎯 Colors, typography, and visual elements coming together! #design #branding #creative",
+    caption: "Creating a bold new brand identity 🎯 Every color, every shape tells a story! #design #branding #creative #designer",
     likes: ["0", "4"],
     likesCount: 2,
     comments: [
