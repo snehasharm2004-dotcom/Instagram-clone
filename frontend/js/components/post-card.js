@@ -4,7 +4,6 @@
 function createPostCard(post) {
   const user = auth.getUser();
   const isLiked = post.likes.includes(user._id);
-  const { API_ENDPOINTS } = require('../config');
 
   const postHTML = `
     <div class="post" data-post-id="${post._id}">
@@ -89,21 +88,33 @@ async function toggleLike(postId) {
     const likesCountEl = post.querySelector('.likes-count');
     const isLiked = likeBtn.dataset.liked === 'true';
 
-    const { API_ENDPOINTS } = require('../config');
+    // Use mock data - find the post in mockPosts
+    const mockPost = mockPosts.find(p => p._id === postId);
+    if (!mockPost) {
+      showError('Post not found');
+      return;
+    }
+
+    const user = auth.getUser();
 
     if (isLiked) {
-      await api.delete(API_ENDPOINTS.UNLIKE_POST(postId));
+      // Unlike
+      mockPost.likes = mockPost.likes.filter(id => id !== user._id);
+      mockPost.likesCount--;
       likeBtn.dataset.liked = 'false';
       likeBtn.classList.remove('liked');
     } else {
-      await api.post(API_ENDPOINTS.LIKE_POST(postId));
+      // Like
+      if (!mockPost.likes.includes(user._id)) {
+        mockPost.likes.push(user._id);
+        mockPost.likesCount++;
+      }
       likeBtn.dataset.liked = 'true';
       likeBtn.classList.add('liked');
     }
 
-    // Refresh post data
-    const response = await api.get(API_ENDPOINTS.GET_POST(postId));
-    likesCountEl.textContent = `${response.post.likesCount} likes`;
+    // Update UI
+    likesCountEl.textContent = `${mockPost.likesCount} likes`;
   } catch (error) {
     showError(error.message);
   }
@@ -154,22 +165,37 @@ async function addComment(postId, btn) {
       return;
     }
 
-    const { API_ENDPOINTS } = require('../config');
-    const response = await api.post(API_ENDPOINTS.CREATE_COMMENT(postId), {
-      text: commentText
-    });
+    // Use mock data - find the post in mockPosts
+    const mockPost = mockPosts.find(p => p._id === postId);
+    if (!mockPost) {
+      showError('Post not found');
+      return;
+    }
+
+    const user = auth.getUser();
+
+    // Create new comment
+    const newComment = {
+      _id: 'c' + Date.now(),
+      author: user,
+      text: commentText,
+      likes: []
+    };
+
+    // Add to mock post
+    mockPost.comments.push(newComment);
+    mockPost.commentsCount++;
 
     // Add new comment to UI
     const post = document.querySelector(`[data-post-id="${postId}"]`);
     const commentsDiv = post.querySelector('.post-comments');
 
-    const user = auth.getUser();
     const commentHTML = `
-      <div class="comment" data-comment-id="${response.comment._id}">
+      <div class="comment" data-comment-id="${newComment._id}">
         <div>
-          <strong>${response.comment.author.username}</strong> ${escapeHtml(response.comment.text)}
+          <strong>${newComment.author.username}</strong> ${escapeHtml(newComment.text)}
         </div>
-        <button class="comment-delete" onclick="deleteComment('${postId}', '${response.comment._id}')">Delete</button>
+        <button class="comment-delete" onclick="deleteComment('${postId}', '${newComment._id}')">Delete</button>
       </div>
     `;
 
@@ -187,11 +213,25 @@ async function deleteComment(postId, commentId) {
   if (!confirm('Delete this comment?')) return;
 
   try {
-    const { API_ENDPOINTS } = require('../config');
-    await api.delete(API_ENDPOINTS.DELETE_COMMENT(commentId));
+    // Use mock data - find the post and comment
+    const mockPost = mockPosts.find(p => p._id === postId);
+    if (!mockPost) {
+      showError('Post not found');
+      return;
+    }
 
+    // Find and remove the comment
+    const commentIndex = mockPost.comments.findIndex(c => c._id === commentId);
+    if (commentIndex !== -1) {
+      mockPost.comments.splice(commentIndex, 1);
+      mockPost.commentsCount--;
+    }
+
+    // Remove from UI
     const commentEl = document.querySelector(`[data-comment-id="${commentId}"]`);
-    commentEl.remove();
+    if (commentEl) {
+      commentEl.remove();
+    }
 
     showSuccess('Comment deleted');
   } catch (error) {
@@ -206,11 +246,17 @@ async function deletePost(postId) {
   if (!confirm('Delete this post?')) return;
 
   try {
-    const { API_ENDPOINTS } = require('../config');
-    await api.delete(API_ENDPOINTS.DELETE_POST(postId));
+    // Use mock data - find and remove the post
+    const postIndex = mockPosts.findIndex(p => p._id === postId);
+    if (postIndex !== -1) {
+      mockPosts.splice(postIndex, 1);
+    }
 
+    // Remove from UI
     const postEl = document.querySelector(`[data-post-id="${postId}"]`);
-    postEl.remove();
+    if (postEl) {
+      postEl.remove();
+    }
 
     showSuccess('Post deleted');
   } catch (error) {

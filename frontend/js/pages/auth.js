@@ -80,15 +80,21 @@ loginForm.addEventListener('submit', async (e) => {
   showLoading();
 
   try {
-    const { API_ENDPOINTS } = require('../config');
-    const response = await api.post(API_ENDPOINTS.LOGIN, {
-      email,
-      password
-    });
+    // Use mock data - find user by email
+    const user = mockUsers.find(u => u.email === email);
+
+    if (!user || user.password !== password) {
+      showError('Invalid email or password');
+      hideLoading();
+      return;
+    }
+
+    // Create mock token
+    const mockToken = 'mock_jwt_token_' + user._id + '_' + Date.now();
 
     // Save token and user data
-    auth.saveToken(response.token);
-    auth.saveUser(response.user);
+    auth.saveToken(mockToken);
+    auth.saveUser(user);
 
     showSuccess('Login successful! Redirecting...');
 
@@ -135,17 +141,37 @@ registerForm.addEventListener('submit', async (e) => {
   showLoading();
 
   try {
-    const { API_ENDPOINTS } = require('../config');
-    const response = await api.post(API_ENDPOINTS.REGISTER, {
-      fullName,
-      email,
+    // Use mock data - check if username/email already exists
+    const existingUser = mockUsers.find(u => u.username === username || u.email === email);
+    if (existingUser) {
+      showError('Username or email already exists');
+      hideLoading();
+      return;
+    }
+
+    // Create new user
+    const newUser = {
+      _id: String(mockUsers.length + 1),
       username,
-      password
-    });
+      email,
+      fullName,
+      password,
+      profilePicture: `https://i.pravatar.cc/150?img=${Math.floor(Math.random() * 70)}`,
+      bio: '',
+      followers: [],
+      following: [],
+      posts: []
+    };
+
+    // Add to mock users
+    mockUsers.push(newUser);
+
+    // Create mock token
+    const mockToken = 'mock_jwt_token_' + newUser._id + '_' + Date.now();
 
     // Save token and user data
-    auth.saveToken(response.token);
-    auth.saveUser(response.user);
+    auth.saveToken(mockToken);
+    auth.saveUser(newUser);
 
     showSuccess('Account created successfully! Redirecting...');
 

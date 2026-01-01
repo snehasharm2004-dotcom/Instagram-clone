@@ -83,25 +83,25 @@ async function loadPosts() {
   if (loadingDiv) loadingDiv.style.display = 'block';
 
   try {
-    const { API_ENDPOINTS } = require('../config');
-    const response = await api.get(
-      API_ENDPOINTS.GET_FEED + `?page=${currentPage}&limit=10`
-    );
+    // Use mock data - simulate pagination
+    const limit = 10;
+    const startIndex = (currentPage - 1) * limit;
+    const posts = mockPosts.slice(startIndex, startIndex + limit);
 
-    if (response.posts.length === 0 && currentPage === 1) {
+    if (posts.length === 0 && currentPage === 1) {
       if (noPostsDiv) noPostsDiv.style.display = 'block';
       if (feedDiv) feedDiv.innerHTML = '';
     } else {
       if (noPostsDiv) noPostsDiv.style.display = 'none';
 
-      const postsHTML = response.posts
+      const postsHTML = posts
         .map(post => createPostCard(post))
         .join('');
 
       feedDiv.innerHTML += postsHTML;
     }
 
-    hasMore = response.hasMore;
+    hasMore = posts.length === limit;
     currentPage++;
   } catch (error) {
     console.error('Error loading posts:', error);
@@ -128,26 +128,40 @@ async function createPost(e) {
     return;
   }
 
-  // Create FormData
-  const formData = new FormData();
-  formData.append('image', file);
-  formData.append('caption', captionInput.value.trim());
-  formData.append('location', locationInput.value.trim());
-
   try {
-    const { API_ENDPOINTS } = require('../config');
+    // Read image as data URL for mock data
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      const currentUser = auth.getUser();
 
-    // Upload image and create post
-    const response = await api.post(API_ENDPOINTS.CREATE_POST, formData);
+      // Create new post object
+      const newPost = {
+        _id: 'p' + Date.now(),
+        author: currentUser,
+        imageUrl: event.target.result,
+        caption: captionInput.value.trim(),
+        location: locationInput.value.trim(),
+        likes: [],
+        likesCount: 0,
+        comments: [],
+        commentsCount: 0,
+        tags: [],
+        createdAt: new Date()
+      };
 
-    // Add new post to the top of feed
-    const feedDiv = document.getElementById('posts-feed');
-    const postHTML = createPostCard(response.post);
-    feedDiv.innerHTML = postHTML + feedDiv.innerHTML;
+      // Add to beginning of mockPosts
+      mockPosts.unshift(newPost);
 
-    // Clear form and close modal
-    closePostModal();
-    showSuccess('Post created successfully!');
+      // Add new post to the top of feed
+      const feedDiv = document.getElementById('posts-feed');
+      const postHTML = createPostCard(newPost);
+      feedDiv.innerHTML = postHTML + feedDiv.innerHTML;
+
+      // Clear form and close modal
+      closePostModal();
+      showSuccess('Post created successfully!');
+    };
+    reader.readAsDataURL(file);
   } catch (error) {
     showError(error.message || 'Failed to create post');
   }
@@ -159,14 +173,11 @@ async function createPost(e) {
 async function loadSuggestedUsers() {
   try {
     const user = auth.getUser();
-    const { API_ENDPOINTS } = require('../config');
 
-    // Get a list of users to suggest
-    const response = await api.get(API_ENDPOINTS.SEARCH_USERS + '?q=');
-
+    // Use mock data
     const suggestedDiv = document.getElementById('suggested-users');
-    if (suggestedDiv && response.users) {
-      const suggestedHTML = response.users
+    if (suggestedDiv) {
+      const suggestedHTML = mockUsers
         .filter(u => u._id !== user._id && !user.following.includes(u._id))
         .slice(0, 5)
         .map(u => `
@@ -195,20 +206,20 @@ async function loadSuggestedUsers() {
  */
 async function followUser(userId) {
   try {
-    const { API_ENDPOINTS } = require('../config');
-    await api.post(API_ENDPOINTS.FOLLOW_USER(userId));
-
-    // Update local user data
+    // Update local user data with mock data
     const user = auth.getUser();
-    user.following.push(userId);
-    auth.saveUser(user);
 
-    // Update button
-    const btn = event.target;
-    btn.textContent = 'Following';
-    btn.disabled = true;
+    if (!user.following.includes(userId)) {
+      user.following.push(userId);
+      auth.saveUser(user);
 
-    showSuccess('User followed!');
+      // Update button
+      const btn = event.target;
+      btn.textContent = 'Following';
+      btn.disabled = true;
+
+      showSuccess('User followed!');
+    }
   } catch (error) {
     showError(error.message);
   }
@@ -240,6 +251,13 @@ function showSuccess(message) {
       successDiv.style.display = 'none';
     }, 5000);
   }
+}
+
+/**
+ * Go to user profile
+ */
+function goToProfile(username) {
+  window.location.href = 'profile.html?username=' + username;
 }
 
 // Initialize on page load

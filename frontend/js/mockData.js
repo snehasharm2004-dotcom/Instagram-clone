@@ -3,6 +3,8 @@ const mockUsers = [
   {
     _id: "1",
     username: "john_doe",
+    email: "john@example.com",
+    password: "123456",
     fullName: "John Doe",
     profilePicture: "https://i.pravatar.cc/150?img=1",
     bio: "Photography enthusiast 📸",
@@ -13,6 +15,8 @@ const mockUsers = [
   {
     _id: "2",
     username: "sarah_smith",
+    email: "sarah@example.com",
+    password: "123456",
     fullName: "Sarah Smith",
     profilePicture: "https://i.pravatar.cc/150?img=2",
     bio: "Travel blogger ✈️",
@@ -23,6 +27,8 @@ const mockUsers = [
   {
     _id: "3",
     username: "alex_jones",
+    email: "alex@example.com",
+    password: "123456",
     fullName: "Alex Jones",
     profilePicture: "https://i.pravatar.cc/150?img=3",
     bio: "Designer & developer",
@@ -33,6 +39,8 @@ const mockUsers = [
   {
     _id: "4",
     username: "emily_wilson",
+    email: "emily@example.com",
+    password: "123456",
     fullName: "Emily Wilson",
     profilePicture: "https://i.pravatar.cc/150?img=4",
     bio: "Food lover 🍕",
@@ -43,6 +51,8 @@ const mockUsers = [
   {
     _id: "5",
     username: "mike_brown",
+    email: "mike@example.com",
+    password: "123456",
     fullName: "Mike Brown",
     profilePicture: "https://i.pravatar.cc/150?img=5",
     bio: "Fitness coach 💪",
