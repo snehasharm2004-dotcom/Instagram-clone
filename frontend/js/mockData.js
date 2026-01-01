@@ -67,7 +67,7 @@ const mockPosts = [
   {
     _id: "p1",
     author: mockUsers[0],
-    imageUrl: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=500&fit=crop",
+    imageUrl: "https://picsum.photos/500/500?random=1",
     caption: "Beautiful sunset at the mountains! 🌅 #photography #nature #sunset",
     likes: ["2", "3"],
     likesCount: 2,
@@ -93,7 +93,7 @@ const mockPosts = [
   {
     _id: "p2",
     author: mockUsers[0],
-    imageUrl: "https://images.unsplash.com/photo-1495537821757-a1efb6729352?w=500&h=500&fit=crop",
+    imageUrl: "https://picsum.photos/500/500?random=2",
     caption: "Morning coffee with a view ☕️ #lifestyle #mornings",
     likes: ["1", "4"],
     likesCount: 2,
@@ -113,7 +113,7 @@ const mockPosts = [
   {
     _id: "p3",
     author: mockUsers[1],
-    imageUrl: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=500&h=500&fit=crop",
+    imageUrl: "https://picsum.photos/500/500?random=3",
     caption: "Exploring the streets of Paris 🗼 #travel #wanderlust #paris",
     likes: ["0", "2", "3", "4"],
     likesCount: 4,
@@ -133,7 +133,7 @@ const mockPosts = [
   {
     _id: "p4",
     author: mockUsers[1],
-    imageUrl: "https://images.unsplash.com/photo-1495562411223-a6b544e408b0?w=500&h=500&fit=crop",
+    imageUrl: "https://picsum.photos/500/500?random=2",
     caption: "Beach vibes 🌊 Nothing beats a sunset on the shore #beach #vacation",
     likes: ["0", "3"],
     likesCount: 2,
@@ -146,7 +146,7 @@ const mockPosts = [
   {
     _id: "p5",
     author: mockUsers[2],
-    imageUrl: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=500&fit=crop",
+    imageUrl: "https://picsum.photos/500/500?random=4",
     caption: "New UI design system I'm working on 🎨 #design #ux #ui",
     likes: ["0", "1"],
     likesCount: 2,
@@ -172,7 +172,7 @@ const mockPosts = [
   {
     _id: "p6",
     author: mockUsers[3],
-    imageUrl: "https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=500&h=500&fit=crop",
+    imageUrl: "https://picsum.photos/500/500?random=5",
     caption: "This pasta was absolutely delicious! 🍝 Recipe coming soon #foodie #cooking #pasta",
     likes: ["0", "1", "2"],
     likesCount: 3,
@@ -192,7 +192,7 @@ const mockPosts = [
   {
     _id: "p7",
     author: mockUsers[3],
-    imageUrl: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500&h=500&fit=crop",
+    imageUrl: "https://picsum.photos/500/500?random=6",
     caption: "Breakfast vibes ☀️ Start your day right! #breakfast #healthy #morning",
     likes: ["2", "4"],
     likesCount: 2,
@@ -205,7 +205,7 @@ const mockPosts = [
   {
     _id: "p8",
     author: mockUsers[4],
-    imageUrl: "https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?w=500&h=500&fit=crop",
+    imageUrl: "https://picsum.photos/500/500?random=7",
     caption: "Morning gym session! 💪 Never miss leg day #fitness #workout #health",
     likes: ["0", "1", "3"],
     likesCount: 3,
@@ -225,7 +225,7 @@ const mockPosts = [
   {
     _id: "p9",
     author: mockUsers[1],
-    imageUrl: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=500&fit=crop",
+    imageUrl: "https://picsum.photos/500/500?random=8",
     caption: "Ancient temples and breathtaking views 🏛️ #travel #history #wanderlust #architecture",
     likes: ["0", "2", "3", "4"],
     likesCount: 4,
@@ -251,7 +251,7 @@ const mockPosts = [
   {
     _id: "p10",
     author: mockUsers[2],
-    imageUrl: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=500&fit=crop",
+    imageUrl: "https://picsum.photos/500/500?random=9",
     caption: "Finished my first app design project! So proud of the results 🎨 #design #webdesign #portfolio",
     likes: ["0", "1"],
     likesCount: 2,
@@ -271,7 +271,7 @@ const mockPosts = [
   {
     _id: "p11",
     author: mockUsers[0],
-    imageUrl: "https://images.unsplash.com/photo-1470093851219-69951fcbb533?w=500&h=500&fit=crop",
+    imageUrl: "https://picsum.photos/500/500?random=10",
     caption: "Golden hour photography 📷 The best time to shoot is always golden hour! #photography #goldenour #nature",
     likes: ["1", "2", "4"],
     likesCount: 3,
@@ -291,7 +291,7 @@ const mockPosts = [
   {
     _id: "p12",
     author: mockUsers[3],
-    imageUrl: "https://images.unsplash.com/photo-1495545632066-ae2e2289eac9?w=500&h=500&fit=crop",
+    imageUrl: "https://picsum.photos/500/500?random=11",
     caption: "New recipe alert! Homemade pizza night 🍕 Crispy crust, fresh toppings, pure bliss #foodie #homecooking #pizza",
     likes: ["0", "2", "4"],
     likesCount: 3,
@@ -311,7 +311,7 @@ const mockPosts = [
   {
     _id: "p13",
     author: mockUsers[4],
-    imageUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&h=500&fit=crop",
+    imageUrl: "https://picsum.photos/500/500?random=12",
     caption: "Beach run at sunrise 🏃 Best way to start the day! #fitness #running #health #beachbody",
     likes: ["0", "1", "3"],
     likesCount: 3,
@@ -331,7 +331,7 @@ const mockPosts = [
   {
     _id: "p14",
     author: mockUsers[2],
-    imageUrl: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=500&fit=crop",
+    imageUrl: "https://picsum.photos/500/500?random=13",
     caption: "Working on a new brand identity project 🎯 Colors, typography, and visual elements coming together! #design #branding #creative",
     likes: ["0", "4"],
     likesCount: 2,
