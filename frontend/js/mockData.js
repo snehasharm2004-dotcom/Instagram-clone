@@ -67,7 +67,7 @@ const mockPosts = [
   {
     _id: "p1",
     author: mockUsers[0],
-    imageUrl: "https://picsum.photos/500/500?random=1",
+    imageUrl: "https://loremflickr.com/500/500?lock=1&search=sunset,mountains",
     caption: "Beautiful sunset at the mountains! 🌅 #photography #nature #sunset",
     likes: ["2", "3"],
     likesCount: 2,
@@ -93,7 +93,7 @@ const mockPosts = [
   {
     _id: "p2",
     author: mockUsers[0],
-    imageUrl: "https://picsum.photos/500/500?random=2",
+    imageUrl: "https://loremflickr.com/500/500?lock=2&search=coffee,morning",
     caption: "Morning coffee with a view ☕️ #lifestyle #mornings",
     likes: ["1", "4"],
     likesCount: 2,
@@ -113,7 +113,7 @@ const mockPosts = [
   {
     _id: "p3",
     author: mockUsers[1],
-    imageUrl: "https://picsum.photos/500/500?random=3",
+    imageUrl: "https://loremflickr.com/500/500?lock=3&search=paris,street,travel",
     caption: "Exploring the streets of Paris 🗼 #travel #wanderlust #paris",
     likes: ["0", "2", "3", "4"],
     likesCount: 4,
@@ -133,7 +133,7 @@ const mockPosts = [
   {
     _id: "p4",
     author: mockUsers[1],
-    imageUrl: "https://picsum.photos/500/500?random=2",
+    imageUrl: "https://loremflickr.com/500/500?lock=4&search=beach,sunset",
     caption: "Beach vibes 🌊 Nothing beats a sunset on the shore #beach #vacation",
     likes: ["0", "3"],
     likesCount: 2,
@@ -146,7 +146,7 @@ const mockPosts = [
   {
     _id: "p5",
     author: mockUsers[2],
-    imageUrl: "https://picsum.photos/500/500?random=4",
+    imageUrl: "https://loremflickr.com/500/500?lock=5&search=design,ui",
     caption: "New UI design system I'm working on 🎨 #design #ux #ui",
     likes: ["0", "1"],
     likesCount: 2,
@@ -172,7 +172,7 @@ const mockPosts = [
   {
     _id: "p6",
     author: mockUsers[3],
-    imageUrl: "https://picsum.photos/500/500?random=5",
+    imageUrl: "https://loremflickr.com/500/500?lock=6&search=pasta,food,cooking",
     caption: "This pasta was absolutely delicious! 🍝 Recipe coming soon #foodie #cooking #pasta",
     likes: ["0", "1", "2"],
     likesCount: 3,
@@ -192,7 +192,7 @@ const mockPosts = [
   {
     _id: "p7",
     author: mockUsers[3],
-    imageUrl: "https://picsum.photos/500/500?random=6",
+    imageUrl: "https://loremflickr.com/500/500?lock=7&search=breakfast,food",
     caption: "Breakfast vibes ☀️ Start your day right! #breakfast #healthy #morning",
     likes: ["2", "4"],
     likesCount: 2,
@@ -205,7 +205,7 @@ const mockPosts = [
   {
     _id: "p8",
     author: mockUsers[4],
-    imageUrl: "https://picsum.photos/500/500?random=7",
+    imageUrl: "https://loremflickr.com/500/500?lock=8&search=gym,fitness,workout",
     caption: "Morning gym session! 💪 Never miss leg day #fitness #workout #health",
     likes: ["0", "1", "3"],
     likesCount: 3,
@@ -225,7 +225,7 @@ const mockPosts = [
   {
     _id: "p9",
     author: mockUsers[1],
-    imageUrl: "https://picsum.photos/500/500?random=8",
+    imageUrl: "https://loremflickr.com/500/500?lock=9&search=temple,travel,architecture",
     caption: "Ancient temples and breathtaking views 🏛️ #travel #history #wanderlust #architecture",
     likes: ["0", "2", "3", "4"],
     likesCount: 4,
@@ -251,7 +251,7 @@ const mockPosts = [
   {
     _id: "p10",
     author: mockUsers[2],
-    imageUrl: "https://picsum.photos/500/500?random=9",
+    imageUrl: "https://loremflickr.com/500/500?lock=10&search=design,webdesign,portfolio",
     caption: "Finished my first app design project! So proud of the results 🎨 #design #webdesign #portfolio",
     likes: ["0", "1"],
     likesCount: 2,
@@ -271,7 +271,7 @@ const mockPosts = [
   {
     _id: "p11",
     author: mockUsers[0],
-    imageUrl: "https://picsum.photos/500/500?random=10",
+    imageUrl: "https://loremflickr.com/500/500?lock=11&search=photography,nature,golden",
     caption: "Golden hour photography 📷 The best time to shoot is always golden hour! #photography #goldenour #nature",
     likes: ["1", "2", "4"],
     likesCount: 3,
@@ -291,7 +291,7 @@ const mockPosts = [
   {
     _id: "p12",
     author: mockUsers[3],
-    imageUrl: "https://picsum.photos/500/500?random=11",
+    imageUrl: "https://loremflickr.com/500/500?lock=12&search=pizza,food,cooking",
     caption: "New recipe alert! Homemade pizza night 🍕 Crispy crust, fresh toppings, pure bliss #foodie #homecooking #pizza",
     likes: ["0", "2", "4"],
     likesCount: 3,
@@ -311,7 +311,7 @@ const mockPosts = [
   {
     _id: "p13",
     author: mockUsers[4],
-    imageUrl: "https://picsum.photos/500/500?random=12",
+    imageUrl: "https://loremflickr.com/500/500?lock=13&search=beach,running,fitness",
     caption: "Beach run at sunrise 🏃 Best way to start the day! #fitness #running #health #beachbody",
     likes: ["0", "1", "3"],
     likesCount: 3,
@@ -331,7 +331,7 @@ const mockPosts = [
   {
     _id: "p14",
     author: mockUsers[2],
-    imageUrl: "https://picsum.photos/500/500?random=13",
+    imageUrl: "https://loremflickr.com/500/500?lock=14&search=design,branding,creative",
     caption: "Working on a new brand identity project 🎯 Colors, typography, and visual elements coming together! #design #branding #creative",
     likes: ["0", "4"],
     likesCount: 2,
