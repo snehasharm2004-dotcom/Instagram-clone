@@ -67,7 +67,7 @@ const mockPosts = [
   {
     _id: "p1",
     author: mockUsers[0],
-    imageUrl: "https://loremflickr.com/500/500?lock=1&search=sunset,mountains",
+    imageUrl: "https://loremflickr.com/500/500?lock=1&search=golden+hour+sunset+mountains",
     caption: "Golden hour magic in the mountains ✨ #photography #sunset #mountains",
     likes: ["2", "3"],
     likesCount: 2,
@@ -93,7 +93,7 @@ const mockPosts = [
   {
     _id: "p2",
     author: mockUsers[0],
-    imageUrl: "https://loremflickr.com/500/500?lock=2&search=coffee,morning",
+    imageUrl: "https://loremflickr.com/500/500?lock=2&search=hot+coffee+morning+cup",
     caption: "Nothing beats a hot coffee on a beautiful morning ☕ #lifestyle #morning #coffee",
     likes: ["1", "4"],
     likesCount: 2,
@@ -113,7 +113,7 @@ const mockPosts = [
   {
     _id: "p3",
     author: mockUsers[1],
-    imageUrl: "https://loremflickr.com/500/500?lock=3&search=paris,street,travel",
+    imageUrl: "https://loremflickr.com/500/500?lock=3&search=paris+streets+eiffel+tower",
     caption: "Lost in the charming streets of Paris 🗼 #travel #paris #wanderlust #europe",
     likes: ["0", "2", "3", "4"],
     likesCount: 4,
@@ -133,7 +133,7 @@ const mockPosts = [
   {
     _id: "p4",
     author: mockUsers[1],
-    imageUrl: "https://loremflickr.com/500/500?lock=4&search=beach,sunset",
+    imageUrl: "https://loremflickr.com/500/500?lock=4&search=beach+sunset+ocean+tropical",
     caption: "Pure paradise 🌊 Sunset on the beach is all I need #beach #sunset #vacation #paradise",
     likes: ["0", "3"],
     likesCount: 2,
@@ -146,7 +146,7 @@ const mockPosts = [
   {
     _id: "p5",
     author: mockUsers[2],
-    imageUrl: "https://loremflickr.com/500/500?lock=5&search=design,ui",
+    imageUrl: "https://loremflickr.com/500/500?lock=5&search=web+design+ui+interface+creative",
     caption: "Designing beautiful interfaces one pixel at a time 🎨 #design #ui #ux #webdesign",
     likes: ["0", "1"],
     likesCount: 2,
@@ -172,7 +172,7 @@ const mockPosts = [
   {
     _id: "p6",
     author: mockUsers[3],
-    imageUrl: "https://loremflickr.com/500/500?lock=6&search=pasta,food,cooking",
+    imageUrl: "https://loremflickr.com/500/500?lock=6&search=homemade+pasta+italian+food+delicious",
     caption: "Homemade pasta perfection 🍝 Nothing tastes better than homemade! #foodie #cooking #pasta #delicious",
     likes: ["0", "1", "2"],
     likesCount: 3,
@@ -192,7 +192,7 @@ const mockPosts = [
   {
     _id: "p7",
     author: mockUsers[3],
-    imageUrl: "https://loremflickr.com/500/500?lock=7&search=breakfast,food",
+    imageUrl: "https://loremflickr.com/500/500?lock=7&search=healthy+breakfast+morning+eggs+food",
     caption: "Breakfast goals 🍳 Energy for the day ahead! #breakfast #healthy #food #morningmotivation",
     likes: ["2", "4"],
     likesCount: 2,
@@ -205,7 +205,7 @@ const mockPosts = [
   {
     _id: "p8",
     author: mockUsers[4],
-    imageUrl: "https://loremflickr.com/500/500?lock=8&search=gym,fitness,workout",
+    imageUrl: "https://loremflickr.com/500/500?lock=8&search=gym+workout+fitness+muscle+training",
     caption: "Grinding hard at the gym 💪 No pain, no gain! #fitness #workout #fitnessmotivation #gains",
     likes: ["0", "1", "3"],
     likesCount: 3,
@@ -225,7 +225,7 @@ const mockPosts = [
   {
     _id: "p9",
     author: mockUsers[1],
-    imageUrl: "https://loremflickr.com/500/500?lock=9&search=temple,travel,architecture",
+    imageUrl: "https://loremflickr.com/500/500?lock=9&search=ancient+temple+architecture+asia+travel",
     caption: "Exploring ancient architecture and cultural wonders 🏛️ #travel #architecture #culture #adventure",
     likes: ["0", "2", "3", "4"],
     likesCount: 4,
@@ -251,7 +251,7 @@ const mockPosts = [
   {
     _id: "p10",
     author: mockUsers[2],
-    imageUrl: "https://loremflickr.com/500/500?lock=10&search=design,webdesign,portfolio",
+    imageUrl: "https://loremflickr.com/500/500?lock=10&search=design+portfolio+creative+project+workspace",
     caption: "Just finished an amazing design project! So proud of this work 🎨 #design #portfolio #creative #webdesign",
     likes: ["0", "1"],
     likesCount: 2,
@@ -271,7 +271,7 @@ const mockPosts = [
   {
     _id: "p11",
     author: mockUsers[0],
-    imageUrl: "https://loremflickr.com/500/500?lock=11&search=photography,nature,golden",
+    imageUrl: "https://loremflickr.com/500/500?lock=11&search=golden+hour+photography+nature+landscape",
     caption: "Golden hour is photographer's best friend 📷 The perfect light for stunning shots! #photography #nature #golden",
     likes: ["1", "2", "4"],
     likesCount: 3,
@@ -291,7 +291,7 @@ const mockPosts = [
   {
     _id: "p12",
     author: mockUsers[3],
-    imageUrl: "https://loremflickr.com/500/500?lock=12&search=pizza,food,cooking",
+    imageUrl: "https://loremflickr.com/500/500?lock=12&search=homemade+pizza+italian+delicious+food",
     caption: "Pizza night at home 🍕 Homemade is always better! Fresh, delicious, and made with love #foodie #pizza #cooking",
     likes: ["0", "2", "4"],
     likesCount: 3,
@@ -311,7 +311,7 @@ const mockPosts = [
   {
     _id: "p13",
     author: mockUsers[4],
-    imageUrl: "https://loremflickr.com/500/500?lock=13&search=beach,running,fitness",
+    imageUrl: "https://loremflickr.com/500/500?lock=13&search=beach+running+morning+fitness+jogger",
     caption: "Morning beach run to energize the soul 🏃 Nothing beats running on sand! #fitness #running #beach #health",
     likes: ["0", "1", "3"],
     likesCount: 3,
@@ -331,7 +331,7 @@ const mockPosts = [
   {
     _id: "p14",
     author: mockUsers[2],
-    imageUrl: "https://loremflickr.com/500/500?lock=14&search=design,branding,creative",
+    imageUrl: "https://loremflickr.com/500/500?lock=14&search=branding+design+creative+logo+identity",
     caption: "Creating a bold new brand identity 🎯 Every color, every shape tells a story! #design #branding #creative #designer",
     likes: ["0", "4"],
     likesCount: 2,
