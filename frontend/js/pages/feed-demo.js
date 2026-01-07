@@ -1,5 +1,5 @@
 // Demo feed - uses mock data instead of API
-let allPosts = [...mockPosts]; // Copy mock posts
+let allPosts = [...mockPosts].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // Copy and sort by newest first
 let allUsers = [...mockUsers]; // Copy mock users
 
 /**

@@ -86,7 +86,9 @@ async function loadPosts() {
     // Use mock data - simulate pagination
     const limit = 10;
     const startIndex = (currentPage - 1) * limit;
-    const posts = mockPosts.slice(startIndex, startIndex + limit);
+    // Sort posts by newest first
+    const sortedPosts = [...mockPosts].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    const posts = sortedPosts.slice(startIndex, startIndex + limit);
 
     if (posts.length === 0 && currentPage === 1) {
       if (noPostsDiv) noPostsDiv.style.display = 'block';
