@@ -1,7 +1,7 @@
 {
   "name": "instagram-clone",
   "version": "1.0.0",
-  "description": "A full-stack Instagram clone application",
+  "description": "A frontend Instagram clone application",
   "main": "backend/server.js",
   "scripts": {
     "start": "node backend/server.js",
