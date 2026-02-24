@@ -25,7 +25,7 @@ function initNavbar() {
 
       searchTimeout = setTimeout(async () => {
         try {
-          const { API_ENDPOINTS } = require('../config');
+          const { API_ENDPOINTS } = require('./config');
           const response = await api.get(API_ENDPOINTS.SEARCH_USERS + `?q=${query}`);
 
           if (response.users.length === 0) {

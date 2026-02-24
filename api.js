@@ -1,5 +1,5 @@
-const { API_BASE_URL } = require('../config');
-const { getToken } = require('./auth');
+const { API_BASE_URL } = require('./config');
+const { getToken } = require('./frontend/js/utils/auth');
 
 class APIClient {
   constructor(baseURL) {
